@@ -11,17 +11,9 @@ var started = false;
 //Create a new variable called level and start at level 0.
 var level = 0;
 
-//for mobile users 
-$(document).click(function() {
-    if (!started) {
-      $("#level-title").text("Level " + level);
-      nextSequence();
-      started = true;
-    }
-  });
 
 //Use jQuery to detect when a keyboard key has been pressed, when that happens for the first time, call nextSequence().
-$(document).keypress(function() {
+$(document).on("touchstart",function() {
     if (!started) {
   //The h1 title starts out saying "Press A Key to Start", when the game has started, change this to say "Level 0".
       $("#level-title").text("Level " + level);
@@ -57,11 +49,10 @@ $(".btn").click(function () {
             playSound("wrong");
             $("body").addClass("game-over");
             $("#level-title").text("Game Over, Press Any Key to Restart");
-          
             setTimeout(function() {
-                $("body").removeClass("game-over");
-            }, 200);
-          
+            $("body").removeClass("game-over");
+            }, 1000);
+        
             startOver();
         }
     }   
